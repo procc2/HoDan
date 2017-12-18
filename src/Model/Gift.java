@@ -1,10 +1,11 @@
 package Model;
-// Generated Dec 18, 2017 2:07:07 PM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2017 12:33:05 AM by Hibernate Tools 4.3.1
 
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,8 +20,8 @@ import javax.persistence.Table;
 public class Gift  implements java.io.Serializable {
 
 
-     private long quaId;
-     private Serializable qua;
+     private Long quaid;
+     private String qua;
      private Integer dien;
      private Integer sluong;
 
@@ -28,12 +29,12 @@ public class Gift  implements java.io.Serializable {
     }
 
 	
-    public Gift(long quaId, Serializable qua) {
-        this.quaId = quaId;
+    public Gift(Long quaid, String qua) {
+        this.quaid = quaid;
         this.qua = qua;
     }
-    public Gift(long quaId, Serializable qua, Integer dien, Integer sluong) {
-       this.quaId = quaId;
+    public Gift(Long quaid, String qua, Integer dien, Integer sluong) {
+       this.quaid = quaid;
        this.qua = qua;
        this.dien = dien;
        this.sluong = sluong;
@@ -41,23 +42,23 @@ public class Gift  implements java.io.Serializable {
    
      @Id 
 
-    
-    @Column(name="QuaId", unique=true, nullable=false)
-    public long getQuaId() {
-        return this.quaId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="Quaid", unique=true)
+    public Long getQuaid() {
+        return this.quaid;
     }
     
-    public void setQuaId(long quaId) {
-        this.quaId = quaId;
+    public void setQuaid(Long quaid) {
+        this.quaid = quaid;
     }
 
     
-    @Column(name="Qua", nullable=false)
-    public Serializable getQua() {
+    @Column(name="Qua", nullable=false, length=50)
+    public String getQua() {
         return this.qua;
     }
     
-    public void setQua(Serializable qua) {
+    public void setQua(String qua) {
         this.qua = qua;
     }
 

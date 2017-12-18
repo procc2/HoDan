@@ -17,14 +17,16 @@ import javax.swing.table.DefaultTableModel;
 public class JInternalFrameQua extends javax.swing.JInternalFrame {
 
     GiftDAO dao = new GiftDAO();
+    Gift gf = null;
     public JInternalFrameQua() {
         initComponents();
+        LoadData();
     }
     private void LoadData(){
         DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         for(Gift ps : dao.list()){
-            model.addRow(new Object[]{ps.getQuaId(),ps.getQua(),ps.getSluong(),ps.getDien()});
+            model.addRow(new Object[]{ps.getQuaid(),ps.getQua(),ps.getSluong(),ps.getDien()});
         }
         jTable1.repaint();
         jTable1.revalidate();
@@ -50,12 +52,14 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jTextFieldDien = new javax.swing.JTextField();
 
+        setClosable(true);
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "STT", "Quà ", "Số lượng", "Diện"
+                "Id", "Quà ", "Số lượng", "Diện"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -169,7 +173,7 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         String cod = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
         Long code = Long.parseLong(cod);
-        Gift gf = dao.search(code);
+        gf = dao.search(code);
         jTextFieldDien.setText(Long.toString(gf.getDien()));
         jTextFieldName.setText(gf.getQua().toString());
         jTextFieldSoluong.setText(gf.getSluong().toString());
@@ -189,7 +193,7 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int check = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn là muốn cập nhật không ? ", "Thông báo cập nhật", JOptionPane.YES_NO_OPTION);
         if(check == JOptionPane.YES_OPTION ){
-            Gift gf = dao.search(Long.parseLong(jTextFieldDien.getText()));
+            if(gf == null) gf = new Gift();
             gf.setQua(jTextFieldName.getText());
             gf.setSluong(Integer.parseInt(jTextFieldSoluong.getText()));
             gf.setDien(Integer.parseInt(jTextFieldDien.getText()));
@@ -200,7 +204,7 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
                 gf.setDien(null);
             }
 
-            if(dao.edit(gf)){
+            if(dao.save(gf)||dao.edit(gf)){
                 JOptionPane.showMessageDialog(null, "Cập nhật thành công");
                 LoadData();
             }else{
