@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 18, 2017 2:07:07 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Personal" table="Personal" schema="dbo" catalog="HoDan" optimistic-lock="version">
+        <id name="identityCode" type="long">
+            <column name="IdentityCode" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="house" class="Model.House" fetch="select">
+            <column name="HouseId" length="10" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="Name" length="50" not-null="true" />
+        </property>
+        <property name="age" type="java.lang.Integer">
+            <column name="Age" />
+        </property>
+        <property name="birthYear" type="java.lang.Integer">
+            <column name="BirthYear" />
+        </property>
+        <property name="career" type="string">
+            <column name="Career" length="20" />
+        </property>
+        <property name="dienDacBiet" type="java.lang.Integer">
+            <column name="dienDacBiet" />
+        </property>
+    </class>
+</hibernate-mapping>

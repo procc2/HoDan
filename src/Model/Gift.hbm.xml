@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 18, 2017 2:07:07 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Gift" table="Gift" schema="dbo" catalog="HoDan" optimistic-lock="version">
+        <id name="quaId" type="long">
+            <column name="QuaId" />
+            <generator class="assigned" />
+        </id>
+        <property name="qua" type="serializable">
+            <column name="Qua" not-null="true" />
+        </property>
+        <property name="dien" type="java.lang.Integer">
+            <column name="Dien" />
+        </property>
+        <property name="sluong" type="java.lang.Integer">
+            <column name="SLuong" />
+        </property>
+    </class>
+</hibernate-mapping>
