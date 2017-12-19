@@ -1,5 +1,5 @@
 package Model;
-// Generated Dec 19, 2017 10:15:55 AM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2017 6:21:36 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +27,7 @@ public class House  implements java.io.Serializable {
      private Integer memberNumber;
      private String address;
      private Set personals = new HashSet(0);
+     private Phi phi;
 
     public House() {
     }
@@ -34,11 +36,12 @@ public class House  implements java.io.Serializable {
     public House(String houseId) {
         this.houseId = houseId;
     }
-    public House(String houseId, Integer memberNumber, String address, Set personals) {
+    public House(String houseId, Integer memberNumber, String address, Set personals, Phi phi) {
        this.houseId = houseId;
        this.memberNumber = memberNumber;
        this.address = address;
        this.personals = personals;
+       this.phi = phi;
     }
    
      @Id 
@@ -80,6 +83,15 @@ public class House  implements java.io.Serializable {
     
     public void setPersonals(Set personals) {
         this.personals = personals;
+    }
+
+@OneToOne(fetch=FetchType.LAZY, mappedBy="house")
+    public Phi getPhi() {
+        return this.phi;
+    }
+    
+    public void setPhi(Phi phi) {
+        this.phi = phi;
     }
 
 

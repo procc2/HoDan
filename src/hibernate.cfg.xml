@@ -48,6 +48,7 @@ Contributor(s):
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <mapping resource="Model/Gift.hbm.xml"/>
+    <mapping resource="Model/Phi.hbm.xml"/>
     <mapping resource="Model/House.hbm.xml"/>
     <mapping resource="Model/Personal.hbm.xml"/>
   </session-factory>

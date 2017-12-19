@@ -186,7 +186,6 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
         String cod = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
         Long code = Long.parseLong(cod);
         gf = dao.search(code);
-        jTextFieldDien.setText(Long.toString(gf.getDien()));
         jTextFieldName.setText(gf.getQua().toString());
         jTextFieldSoluong.setText(gf.getSluong().toString());
         

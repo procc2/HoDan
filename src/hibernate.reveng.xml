@@ -44,4 +44,5 @@ Contributor(s):
   <table-filter match-name="House"/>
   <table-filter match-name="Personal"/>
   <table-filter match-name="Gift"/>
+  <table-filter match-name="Phi"/>
 </hibernate-reverse-engineering>

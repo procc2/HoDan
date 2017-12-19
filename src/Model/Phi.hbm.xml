@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 19, 2017 6:21:36 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Phi" table="Phi" schema="dbo" catalog="HoDan" optimistic-lock="version">
+        <id name="houseId" type="string">
+            <column name="HouseId" length="10" />
+            <generator class="foreign">
+                <param name="property">house</param>
+            </generator>
+        </id>
+        <one-to-one name="house" class="Model.House" constrained="true"></one-to-one>
+        <property name="phiXdCsht" type="boolean">
+            <column name="PhiXdCsht" not-null="true" />
+        </property>
+        <property name="phiTuThien" type="boolean">
+            <column name="PhiTuThien" not-null="true" />
+        </property>
+        <property name="quyQuocPhong" type="boolean">
+            <column name="QuyQuocPhong" not-null="true" />
+        </property>
+        <property name="phiDuyTriPhuong" type="boolean">
+            <column name="PhiDuyTriPhuong" not-null="true" />
+        </property>
+        <property name="quyKhuyenHoc" type="boolean">
+            <column name="QuyKhuyenHoc" not-null="true" />
+        </property>
+        <property name="quyCsNgCaoTuoi" type="boolean">
+            <column name="QuyCsNgCaoTuoi" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
