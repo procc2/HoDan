@@ -8,6 +8,8 @@ package Frame;
 import DAO.GiftDAO;
 import Model.Gift;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,6 +23,39 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
     public JInternalFrameQua() {
         initComponents();
         LoadData();
+        
+        jTextFieldDien.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    jTextFieldEvent.setEditable(false);
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    jTextFieldEvent.setEditable(true);
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    System.out.println(".changedUpdate()");
+                }
+            });
+        jTextFieldEvent.getDocument().addDocumentListener(new DocumentListener() {
+                @Override
+                public void insertUpdate(DocumentEvent e) {
+                    jTextFieldDien.setEditable(false);
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    jTextFieldDien.setEditable(true);
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    System.out.println(".changedUpdate()");
+                }
+            });
     }
     private void LoadData(){
         DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
@@ -98,6 +133,10 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jTextFieldDien.setEditable(false);
+        jTextFieldDien.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldDien.setDisabledTextColor(new java.awt.Color(102, 102, 102));
 
         jLabel4.setText("Dịp lễ");
 
@@ -220,6 +259,7 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
                     gf.setDien(Integer.parseInt(jTextFieldDien.getText()));
 
                 }
+            
             if (jTextFieldEvent.getText() == null || jTextFieldEvent.getText().equals("")) {
                    gf.setEvent(null);
                 } else {

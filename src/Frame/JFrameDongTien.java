@@ -9,6 +9,7 @@ import DAO.PersonalDAO;
 import DAO.PhiDAO;
 import Model.Personal;
 import Model.Phi;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,33 +20,39 @@ public class JFrameDongTien extends javax.swing.JFrame {
 
     PhiDAO dao = new PhiDAO();
     public JFrameDongTien() {
+        
+        initComponents();
+        setLocationRelativeTo(null);
+        LoadData();
+       
+    }
+    private void LoadData(){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
         String phiXD;
         String phiTT;
         String quyQP;
         String phiPhuong;
         String quyKH;
         String quyNgCaoTuoi;
-        initComponents();
-        setLocationRelativeTo(null);
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         for(Phi p : dao.list()){
             if(p.isPhiXdCsht()) phiXD="Đã đóng";
             else phiXD="Chưa đóng";
             if(p.isPhiTuThien()) phiTT="Đã đóng";
             else phiTT="Chưa đóng";
-            if(p.isPhiXdCsht()) quyQP="Đã đóng";
+            if(p.isQuyQuocPhong()) quyQP="Đã đóng";
             else quyQP="Chưa đóng";
-            if(p.isPhiXdCsht()) phiPhuong="Đã đóng";
+            if(p.isPhiDuyTriPhuong()) phiPhuong="Đã đóng";
             else phiPhuong="Chưa đóng";
-            if(p.isPhiXdCsht()) quyKH="Đã đóng";
+            if(p.isQuyKhuyenHoc()) quyKH="Đã đóng";
             else quyKH="Chưa đóng";
-            if(p.isPhiXdCsht()) quyNgCaoTuoi="Đã đóng";
+            if(p.isQuyCsNgCaoTuoi()) quyNgCaoTuoi="Đã đóng";
             else quyNgCaoTuoi="Chưa đóng";
             model.addRow(new Object[]{p.getHouseId(),phiXD,phiTT,quyQP,phiPhuong,quyKH,quyNgCaoTuoi});
         }
-       
+        jTable1.repaint();
+        jTable1.revalidate();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,6 +64,22 @@ public class JFrameDongTien extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jRadioButtonPhiXD = new javax.swing.JRadioButton();
+        jRadioButtonPhiTT = new javax.swing.JRadioButton();
+        jRadioButtonQuyQP = new javax.swing.JRadioButton();
+        jRadioButtonQuyNCT = new javax.swing.JRadioButton();
+        jRadioButtonQuyKH = new javax.swing.JRadioButton();
+        jRadioButtonPhiDT = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,7 +91,57 @@ public class JFrameDongTien extends javax.swing.JFrame {
                 "Số nhà", "Phí Xây dựng", "Phí Từ Thiện", "Quỹ quốc phòng", "Phí Duy Trì Phường", "Quỹ Khuyến Học", "Quỹ Người cao tuổi"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setText("Số nhà ");
+
+        jLabel2.setText("Phí xây dựng");
+
+        jLabel3.setText("Phí từ thiện");
+
+        jLabel4.setText("Quỹ quốc phòng");
+
+        jLabel6.setText("Phí Duy trì Phường");
+
+        jLabel5.setText("Quỹ Khuyến Học");
+
+        jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Save");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Quỹ Người cao tuổi");
+
+        jRadioButtonPhiXD.setText("Đã đóng");
+
+        jRadioButtonPhiTT.setText("Đã đóng");
+
+        jRadioButtonQuyQP.setText("Đã đóng");
+
+        jRadioButtonQuyNCT.setText("Đã đóng");
+
+        jRadioButtonQuyKH.setText("Đã đóng");
+
+        jRadioButtonPhiDT.setText("Đã đóng");
+        jRadioButtonPhiDT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonPhiDTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,19 +149,148 @@ public class JFrameDongTien extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 935, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addComponent(jButton2))
+                        .addGap(91, 91, 91))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jRadioButtonQuyNCT)
+                                    .addComponent(jRadioButtonQuyQP))))
+                        .addGap(123, 123, 123)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jRadioButtonPhiXD))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButtonPhiDT)))
+                        .addGap(146, 146, 146)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButtonQuyKH)
+                            .addComponent(jRadioButtonPhiTT))
+                        .addContainerGap(373, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButtonPhiXD)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButtonPhiTT))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jRadioButtonPhiDT)
+                            .addComponent(jLabel5)
+                            .addComponent(jRadioButtonQuyKH))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jRadioButtonQuyQP))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jButton2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jRadioButtonQuyNCT))
+                                .addContainerGap(49, Short.MAX_VALUE))))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int check = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn xóa không ? ", "Thông báo ", JOptionPane.YES_NO_OPTION);
+        if(check == JOptionPane.YES_OPTION ){
+            
+            if(dao.delete(dao.search(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString()))){
+                JOptionPane.showMessageDialog(null, "Xóa thành công");
+                LoadData();
+            }else{
+                JOptionPane.showMessageDialog(null, "Xóa thất bại");
+            }
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int check = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn là muốn cập nhật không ? ", "Thông báo cập nhật", JOptionPane.YES_NO_OPTION);
+        if(check == JOptionPane.YES_OPTION ){
+            Phi p = dao.search(jTextField1.getText());
+            p.setPhiDuyTriPhuong(jRadioButtonPhiDT.isSelected());
+            p.setPhiTuThien(jRadioButtonPhiTT.isSelected());
+            p.setPhiXdCsht(jRadioButtonPhiXD.isSelected());
+            p.setQuyCsNgCaoTuoi(jRadioButtonQuyNCT.isSelected());
+            p.setQuyKhuyenHoc(jRadioButtonQuyKH.isSelected());
+            p.setQuyQuocPhong(jRadioButtonQuyQP.isSelected());
+            if(dao.edit(p) || dao.save(p)){
+                JOptionPane.showMessageDialog(null, "Cập nhật thành công");
+                LoadData();
+            }else{
+                JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jRadioButtonPhiDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPhiDTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonPhiDTActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+        Phi p = dao.search(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        jTextField1.setText(p.getHouseId());
+        jRadioButtonPhiDT.setSelected(p.isPhiDuyTriPhuong());
+        jRadioButtonPhiTT.setSelected(p.isPhiTuThien());
+        jRadioButtonPhiXD.setSelected(p.isPhiXdCsht());
+        jRadioButtonQuyKH.setSelected(p.isQuyKhuyenHoc());
+        jRadioButtonQuyNCT.setSelected(p.isQuyCsNgCaoTuoi());
+        jRadioButtonQuyQP.setSelected(p.isQuyQuocPhong());
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -127,7 +329,23 @@ public class JFrameDongTien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JRadioButton jRadioButtonPhiDT;
+    private javax.swing.JRadioButton jRadioButtonPhiTT;
+    private javax.swing.JRadioButton jRadioButtonPhiXD;
+    private javax.swing.JRadioButton jRadioButtonQuyKH;
+    private javax.swing.JRadioButton jRadioButtonQuyNCT;
+    private javax.swing.JRadioButton jRadioButtonQuyQP;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

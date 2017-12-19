@@ -146,6 +146,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch &#x111;&#xf3;ng ti&#x1ec1;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem8ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

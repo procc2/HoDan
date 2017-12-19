@@ -9,6 +9,7 @@ import DAO.PersonalDAO;
 import Model.House;
 import Model.Personal;
 import java.awt.event.MouseAdapter;
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -250,12 +251,14 @@ public class JInternalFrameList extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int check = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn là muốn cập nhật không ? ", "Thông báo cập nhật", JOptionPane.YES_NO_OPTION);
         if(check == JOptionPane.YES_OPTION ){
+        LocalDateTime now = LocalDateTime.now();
         Personal ps = dao.search(Long.parseLong(jTextFieldIdenCode.getText()));
         ps.setName(jTextFieldName.getText());
         ps.setCareer(jTextFieldCarrer.getText());
         ps.setIdentityCode(Long.parseLong(jTextFieldIdenCode.getText()));
         ps.setBirthYear(Integer.parseInt(jTextFieldbYear.getText()));
         ps.setHouse(new House(jTextFieldHouseId.getText()));
+        ps.setAge(now.getYear()-ps.getBirthYear());
         if (jTextFieldDienDacBiet.getText() != null && jTextFieldDienDacBiet.getText().equals("") ==false)
         ps.setDienDacBiet(Integer.parseInt(jTextFieldDienDacBiet.getText()));
         else{

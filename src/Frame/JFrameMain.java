@@ -274,6 +274,11 @@ public class JFrameMain extends javax.swing.JFrame {
         jMenu5.setText("Quỹ");
 
         jMenuItem8.setText("Danh sách đóng tiền");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem8);
 
         jMenuBar1.add(jMenu5);
@@ -449,6 +454,19 @@ public class JFrameMain extends javax.swing.JFrame {
 
         });
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        JFrameDongTien form = new JFrameDongTien();
+        form.setVisible(true);
+        dispose();
+        form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        form.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                new JFrameMain().setVisible(true);
+            }
+
+        });
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
