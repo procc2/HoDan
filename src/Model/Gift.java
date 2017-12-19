@@ -1,11 +1,9 @@
 package Model;
-// Generated Dec 19, 2017 12:33:05 AM by Hibernate Tools 4.3.1
+// Generated Dec 19, 2017 10:15:55 AM by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,36 +18,38 @@ import javax.persistence.Table;
 public class Gift  implements java.io.Serializable {
 
 
-     private Long quaid;
+     private long quaId;
      private String qua;
      private Integer dien;
      private Integer sluong;
+     private String event;
 
     public Gift() {
     }
 
 	
-    public Gift(Long quaid, String qua) {
-        this.quaid = quaid;
+    public Gift(long quaId, String qua) {
+        this.quaId = quaId;
         this.qua = qua;
     }
-    public Gift(Long quaid, String qua, Integer dien, Integer sluong) {
-       this.quaid = quaid;
+    public Gift(long quaId, String qua, Integer dien, Integer sluong, String event) {
+       this.quaId = quaId;
        this.qua = qua;
        this.dien = dien;
        this.sluong = sluong;
+       this.event = event;
     }
    
      @Id 
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Quaid", unique=true)
-    public Long getQuaid() {
-        return this.quaid;
+    
+    @Column(name="QuaId", unique=true, nullable=false)
+    public long getQuaId() {
+        return this.quaId;
     }
     
-    public void setQuaid(Long quaid) {
-        this.quaid = quaid;
+    public void setQuaId(long quaId) {
+        this.quaId = quaId;
     }
 
     
@@ -80,6 +80,16 @@ public class Gift  implements java.io.Serializable {
     
     public void setSluong(Integer sluong) {
         this.sluong = sluong;
+    }
+
+    
+    @Column(name="Event", length=50)
+    public String getEvent() {
+        return this.event;
+    }
+    
+    public void setEvent(String event) {
+        this.event = event;
     }
 
 

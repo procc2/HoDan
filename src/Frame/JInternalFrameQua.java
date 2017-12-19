@@ -26,7 +26,7 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
         DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         for(Gift ps : dao.list()){
-            model.addRow(new Object[]{ps.getQuaid(),ps.getQua(),ps.getSluong(),ps.getDien()});
+            model.addRow(new Object[]{ps.getQuaId(),ps.getQua(),ps.getSluong(),ps.getDien(),ps.getEvent()});
         }
         jTable1.repaint();
         jTable1.revalidate();
@@ -51,6 +51,8 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextFieldDien = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldEvent = new javax.swing.JTextField();
 
         setClosable(true);
 
@@ -59,7 +61,7 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Quà ", "Số lượng", "Diện"
+                "Id", "Quà ", "Số lượng", "Diện", "Ngày lễ"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -97,16 +99,20 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel4.setText("Dịp lễ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -119,7 +125,9 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
                             .addComponent(jButton2))
                         .addGap(67, 67, 67))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextFieldDien, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldDien, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,7 +151,11 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDien, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,7 +176,7 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,6 +189,13 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
         jTextFieldDien.setText(Long.toString(gf.getDien()));
         jTextFieldName.setText(gf.getQua().toString());
         jTextFieldSoluong.setText(gf.getSluong().toString());
+        
+        if (gf.getEvent()== null || gf.getEvent().equals("")) {
+            jTextFieldEvent.setText("");
+        } else {
+            jTextFieldEvent.setText(gf.getEvent());
+
+        }
         if (gf.getDien()== null || gf.getDien().equals("")) {
             jTextFieldDien.setText("");
         } else {
@@ -196,13 +215,18 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
             if(gf == null) gf = new Gift();
             gf.setQua(jTextFieldName.getText());
             gf.setSluong(Integer.parseInt(jTextFieldSoluong.getText()));
-            gf.setDien(Integer.parseInt(jTextFieldDien.getText()));
-            
-            if (jTextFieldDien.getText() != null && jTextFieldDien.getText().equals("") ==false)
-            gf.setDien(Integer.parseInt(jTextFieldDien.getText()));
-            else{
-                gf.setDien(null);
-            }
+            if (jTextFieldDien.getText() == null || jTextFieldDien.getText().equals("")) {
+                   gf.setDien(null);
+                } else {
+                    gf.setDien(Integer.parseInt(jTextFieldDien.getText()));
+
+                }
+            if (jTextFieldEvent.getText() == null || jTextFieldEvent.getText().equals("")) {
+                   gf.setEvent(null);
+                } else {
+                    gf.setEvent(jTextFieldEvent.getText());
+
+                }
 
             if(dao.save(gf)||dao.edit(gf)){
                 JOptionPane.showMessageDialog(null, "Cập nhật thành công");
@@ -234,10 +258,12 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldDien;
+    private javax.swing.JTextField jTextFieldEvent;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldSoluong;
     // End of variables declaration//GEN-END:variables

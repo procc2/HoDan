@@ -92,6 +92,14 @@ public class PersonalDAO {
             return null;
         }
     }
+    public List<Personal> findJiDouPeoPle(){
+        try{
+            if(sf.getCurrentSession().getTransaction().isActive()==false) sf.getCurrentSession().beginTransaction();
+            return sf.getCurrentSession().createCriteria(Personal.class).add(Restrictions.between("age", 1, 17)).list();
+        }catch(Exception e){
+            return null;
+        }
+    }
     public List<Personal> findDanQuanPeoPle(){
         try{
             if(sf.getCurrentSession().getTransaction().isActive()==false) sf.getCurrentSession().beginTransaction();

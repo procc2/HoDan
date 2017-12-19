@@ -8,6 +8,7 @@ package DAO;
 import Model.Gift;
 import java.util.List;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -74,5 +75,45 @@ public class GiftDAO {
             sf.getCurrentSession().getTransaction().rollback();
             return false;
         }
-    } 
+    }
+    public List<Gift> findJiDouDayGift(){
+        try{
+            if(sf.getCurrentSession().getTransaction().isActive()==false) sf.getCurrentSession().beginTransaction();
+            return sf.getCurrentSession().createCriteria(Gift.class).add(Restrictions.like("event","%1/6%")).list();
+        }catch(Exception e){
+            return null;
+        }
+    }
+    public List<Gift> findMidAutumnGift(){
+        try{
+            if(sf.getCurrentSession().getTransaction().isActive()==false) sf.getCurrentSession().beginTransaction();
+            return sf.getCurrentSession().createCriteria(Gift.class).add(Restrictions.like("event","%Trung%")).list();
+        }catch(Exception e){
+            return null;
+        }
+    }
+    public List<Gift> findHsgGift(){
+        try{
+            if(sf.getCurrentSession().getTransaction().isActive()==false) sf.getCurrentSession().beginTransaction();
+            return sf.getCurrentSession().createCriteria(Gift.class).add(Restrictions.like("event","%Hoc sinh%")).list();
+        }catch(Exception e){
+            return null;
+        }
+    }
+    public List<Gift> findDien1Gift(){
+        try{
+            if(sf.getCurrentSession().getTransaction().isActive()==false) sf.getCurrentSession().beginTransaction();
+            return sf.getCurrentSession().createCriteria(Gift.class).add(Restrictions.eq("dien",1)).list();
+        }catch(Exception e){
+            return null;
+        }
+    }
+    public List<Gift> findDien2Gift(){
+        try{
+            if(sf.getCurrentSession().getTransaction().isActive()==false) sf.getCurrentSession().beginTransaction();
+            return sf.getCurrentSession().createCriteria(Gift.class).add(Restrictions.eq("dien",2)).list();
+        }catch(Exception e){
+            return null;
+        }
+    }
 }

@@ -103,6 +103,7 @@ public class JFrameMain extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
@@ -221,18 +222,51 @@ public class JFrameMain extends javax.swing.JFrame {
         jMenu4.setText("Quà");
 
         jMenuItem5.setText("Trung thu");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem5);
 
-        jMenuItem6.setText("Ngày trẻ em 1/6");
+        jMenuItem13.setText("Tết thiếu nhi");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem13);
+
+        jMenuItem6.setText("Danh sách trẻ em");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem6);
 
         jMenuItem9.setText("Học sinh giỏi");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem9);
 
         jMenuItem10.setText("Thương bệnh binh");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem10);
 
         jMenuItem11.setText("Người khuyết tật");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem11);
 
         jMenuBar1.add(jMenu4);
@@ -303,6 +337,7 @@ public class JFrameMain extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         JFrameNghiaVu form = new JFrameNghiaVu();
         form.setVisible(true);
+        dispose();
         form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         form.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -315,6 +350,7 @@ public class JFrameMain extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         JframeDanQuan form = new JframeDanQuan();
         form.setVisible(true);
+        dispose();
         form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         form.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -335,6 +371,84 @@ public class JFrameMain extends javax.swing.JFrame {
 
             });
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        JFrameThieuNhi form =new JFrameThieuNhi();
+        form.setVisible(true);
+        dispose();
+        form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        form.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                new JFrameMain().setVisible(true);
+            }
+
+        });
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        JFrameQuaTetTrungThu form = new JFrameQuaTetTrungThu();
+        form.setVisible(true);
+        dispose();
+        form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        form.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                new JFrameMain().setVisible(true);
+            }
+
+        });
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        JFrameQuaTetThieuNhi form = new JFrameQuaTetThieuNhi();
+        form.setVisible(true);
+        dispose();
+        form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        form.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                new JFrameMain().setVisible(true);
+            }
+
+        });
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        JFrameQuaHsg form = new JFrameQuaHsg();
+        form.setVisible(true);
+        dispose();
+        form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        form.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                new JFrameMain().setVisible(true);
+            }
+
+        });
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        JFrameQuaDien2 form = new JFrameQuaDien2();
+        form.setVisible(true);
+        dispose();
+        form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        form.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                new JFrameMain().setVisible(true);
+            }
+
+        });
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        JFrameQuaDien1 form = new JFrameQuaDien1();
+        form.setVisible(true);
+        dispose();
+        form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        form.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                new JFrameMain().setVisible(true);
+            }
+
+        });
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -384,6 +498,7 @@ public class JFrameMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
