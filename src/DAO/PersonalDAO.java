@@ -15,6 +15,7 @@ import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import static java.lang.Math.toIntExact;
+import org.hibernate.SQLQuery;
 
 /**
  *
@@ -104,6 +105,23 @@ public class PersonalDAO {
         try{
             if(sf.getCurrentSession().getTransaction().isActive()==false) sf.getCurrentSession().beginTransaction();
             return sf.getCurrentSession().createCriteria(Personal.class).add(Restrictions.like("career","%Dân quân%")).list();
+        }catch(Exception e){
+            return null;
+        }
+    }
+    public List<Personal> searchByProperty(String name,String career,Integer birthYear,String houseId,Integer dien){
+        try{
+            if(sf.getCurrentSession().getTransaction().isActive()==false) sf.getCurrentSession().beginTransaction();
+            String hql = "Select * from Personal  where 1=1";
+            if(name != null && name.length()>0) hql+=" and name like '%"+name+"%'";
+            if(career != null && career.length()>0 ) hql+=" and career like '%"+career+"%'";
+            if(birthYear != null ) hql+=" and birthYear="+birthYear+"";
+            if(houseId != null && houseId.length()>0) hql+=" and houseId='"+houseId+"'";
+            if(dien != null ) hql+=" and diendacbiet = "+dien+"";
+            SQLQuery query = sf.getCurrentSession().createSQLQuery(hql);
+            query.addEntity(Personal.class);
+            List list = query.list();
+            return list;
         }catch(Exception e){
             return null;
         }

@@ -9,9 +9,11 @@ import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -19,9 +21,7 @@ import javax.swing.event.InternalFrameEvent;
  */
 public class Design extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Design
-     */
+    JInternalFrame form = new JInternalFrame();
     public Design() {
         initComponents();
         setLocationRelativeTo(null);
@@ -29,7 +29,7 @@ public class Design extends javax.swing.JFrame {
         jPanelSo4.hide();
         jPanelSo5.hide();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,7 +146,7 @@ public class Design extends javax.swing.JFrame {
         jPanelDs.setLayout(null);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_Plus_Math_15px.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_List_of_Thumbnails_15px.png"))); // NOI18N
         jPanelDs.add(jLabel9);
         jLabel9.setBounds(22, 0, 31, 47);
 
@@ -167,6 +167,7 @@ public class Design extends javax.swing.JFrame {
         jPanelQuy.setLayout(null);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_Payroll_15px.png"))); // NOI18N
         jPanelQuy.add(jLabel8);
         jLabel8.setBounds(22, 0, 31, 47);
 
@@ -185,12 +186,12 @@ public class Design extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("jLabel2");
+        jLabel11.setText("Hộ dân");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 38, 191, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("jLabel2");
+        jLabel12.setText("Hộ dân");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 64, 191, -1));
 
         jPanelSo3.setBackground(new java.awt.Color(153, 153, 255));
@@ -325,6 +326,8 @@ public class Design extends javax.swing.JFrame {
         resetColor(jPanelQua);
         resetColor(jPanelDs);
         resetColor(jPanelQuy);
+        jPanelSo3.show();
+        jPanelSo2.show();
         resetColorPanel(jPanelSo1);
         resetColorPanel(jPanelSo2);
         resetColorPanel(jPanelSo3);
@@ -344,6 +347,8 @@ public class Design extends javax.swing.JFrame {
         resetColor(jPanelHoDan);
         resetColor(jPanelQuy);
         resetColor(jPanelDs);
+        jPanelSo3.show();
+        jPanelSo2.show();
         jPanelSo4.show();
         jPanelSo5.show();
         resetColorPanel(jPanelSo1);
@@ -373,6 +378,13 @@ public class Design extends javax.swing.JFrame {
         resetColor(jPanelHoDan);
         resetColor(jPanelQuy);
         resetColor(jPanelQua);
+        resetColorPanel(jPanelSo1);
+        resetColorPanel(jPanelSo2);
+        resetColorPanel(jPanelSo3);
+        resetColorPanel(jPanelSo4);
+        resetColorPanel(jPanelSo5);
+        jPanelSo3.show();
+        jPanelSo2.show();
         jLabel12.setText(jLabelDs.getText());
         jLabel11.setText(jLabelDs.getText());
         
@@ -390,7 +402,9 @@ public class Design extends javax.swing.JFrame {
         resetColorPanel(jPanelSo2);
         resetColorPanel(jPanelSo1);
         if(jLabel11.getText().equals(jLabelHoDan.getText())){
-        JInternalFrameThemDanhSach form = new JInternalFrameThemDanhSach();
+            if(form != null) form.dispose();
+        form = new JInternalFrameThemDanhSach();
+        ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
         form.setVisible(true);
         jPanelLamViec.add(form);
         form.addInternalFrameListener(new InternalFrameAdapter() {
@@ -401,7 +415,9 @@ public class Design extends javax.swing.JFrame {
             });
         }
         else if(jLabel11.getText().equals(jLabelDs.getText())){
-            JInternalFrameTreEm form = new JInternalFrameTreEm();
+            if(form != null) form.dispose();
+        form = new JInternalFrameTreEm();
+        ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
         form.setVisible(true);
         jPanelLamViec.add(form);
         form.addInternalFrameListener(new InternalFrameAdapter() {
@@ -412,7 +428,9 @@ public class Design extends javax.swing.JFrame {
             });
         }
         else{
-            JInternalFrameHsg form = new JInternalFrameHsg();
+            if(form != null) form.dispose();
+            form = new JInternalFrameHsg();
+            ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
             form.setVisible(true);
             jPanelLamViec.add(form);
             form.addInternalFrameListener(new InternalFrameAdapter() {
@@ -430,7 +448,9 @@ public class Design extends javax.swing.JFrame {
         resetColorPanel(jPanelSo3);
         
         if(jLabel11.getText().equals(jLabelHoDan.getText())){
-        JInternalFrameThemHoDan form = new JInternalFrameThemHoDan();
+        if(form != null) form.dispose();
+        form = new JInternalFrameThemHoDan();
+        ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
         form.setVisible(true);
         jPanelLamViec.add(form);
         form.addInternalFrameListener(new InternalFrameAdapter() {
@@ -441,7 +461,9 @@ public class Design extends javax.swing.JFrame {
             });
         }
         else if(jLabel11.getText().equals(jLabelDs.getText())){
-            JInternalFrameNghiaVu form = new JInternalFrameNghiaVu();
+        if(form != null) form.dispose();
+        form = new JInternalFrameNghiaVu();
+        ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
         form.setVisible(true);
         jPanelLamViec.add(form);
         form.addInternalFrameListener(new InternalFrameAdapter() {
@@ -452,7 +474,9 @@ public class Design extends javax.swing.JFrame {
             });
         }
         else if(jLabel11.getText().equals(jLabelQuy.getText())){
-            JInternalFrameDongTien form = new JInternalFrameDongTien();
+            if(form != null) form.dispose();
+            form = new JInternalFrameDongTien();
+            ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
         form.setVisible(true);
         jPanelLamViec.add(form);
         form.addInternalFrameListener(new InternalFrameAdapter() {
@@ -463,7 +487,9 @@ public class Design extends javax.swing.JFrame {
             });
         }
         else{
-            JInternalFrameTrungThu form = new JInternalFrameTrungThu();
+            if(form != null) form.dispose();
+            form = new JInternalFrameTrungThu(); 
+            ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
             form.setVisible(true);
             jPanelLamViec.add(form);
             form.addInternalFrameListener(new InternalFrameAdapter() {
@@ -480,7 +506,9 @@ public class Design extends javax.swing.JFrame {
         resetColorPanel(jPanelSo1);
         resetColorPanel(jPanelSo3);
         if(jLabel11.getText().equals(jLabelHoDan.getText())){
-        JInternalFrameList form = new JInternalFrameList();
+        if(form != null) form.dispose();
+        form = new JInternalFrameList();
+        ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
         form.setVisible(true);
         jPanelLamViec.add(form);
         form.addInternalFrameListener(new InternalFrameAdapter() {
@@ -491,7 +519,9 @@ public class Design extends javax.swing.JFrame {
             });
         }
         else if(jLabel11.getText().equals(jLabelDs.getText())){
-            JInternalFrameDanQuan form = new JInternalFrameDanQuan();
+            if(form != null) form.dispose();
+            form = new JInternalFrameDanQuan();
+            ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
         form.setVisible(true);
         jPanelLamViec.add(form);
         form.addInternalFrameListener(new InternalFrameAdapter() {
@@ -502,7 +532,9 @@ public class Design extends javax.swing.JFrame {
             });
         }
         else{
-            JInternalFrameTetThieuNhi form = new JInternalFrameTetThieuNhi();
+            if(form != null) form.dispose();
+            form = new JInternalFrameTetThieuNhi();
+            ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
             form.setVisible(true);
             jPanelLamViec.add(form);
             form.addInternalFrameListener(new InternalFrameAdapter() {
@@ -524,7 +556,9 @@ public class Design extends javax.swing.JFrame {
         resetColorPanel(jPanelSo2);
         resetColorPanel(jPanelSo3);
         resetColorPanel(jPanelSo5);
-        JInternalFrameQuaDien1 form = new JInternalFrameQuaDien1();
+            if(form != null) form.dispose();
+            form = new JInternalFrameQuaDien1();
+            ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
             form.setVisible(true);
             jPanelLamViec.add(form);
             form.addInternalFrameListener(new InternalFrameAdapter() {
@@ -541,7 +575,9 @@ public class Design extends javax.swing.JFrame {
         resetColorPanel(jPanelSo2);
         resetColorPanel(jPanelSo3);
         resetColorPanel(jPanelSo4);
-        JInternalFrameQuaDien2 form = new JInternalFrameQuaDien2();
+            if(form != null) form.dispose();
+            form = new JInternalFrameQuaDien2();
+            ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
             form.setVisible(true);
             jPanelLamViec.add(form);
             form.addInternalFrameListener(new InternalFrameAdapter() {
