@@ -141,7 +141,6 @@ public class JInternalFrameQua extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextFieldDien.setEditable(false);
         jTextFieldDien.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldDien.setDisabledTextColor(new java.awt.Color(102, 102, 102));
 
