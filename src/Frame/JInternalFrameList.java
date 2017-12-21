@@ -67,6 +67,7 @@ public class JInternalFrameList extends javax.swing.JInternalFrame {
         setClosable(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -75,6 +76,8 @@ public class JInternalFrameList extends javax.swing.JInternalFrame {
                 "Số CMT", "Tên", "Công việc", "Năm sinh", "Mã số nhà", "Diện đặc biệt"
             }
         ));
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable1.setSelectionBackground(new java.awt.Color(102, 204, 255));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);

@@ -6,6 +6,7 @@
 package Frame;
 
 import DAO.PhiDAO;
+import Model.House;
 import Model.Phi;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -139,6 +140,7 @@ public class JInternalFrameDongTien extends javax.swing.JInternalFrame {
         jLabel7.setText("Quỹ Người cao tuổi");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, -1, -1));
 
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -147,6 +149,8 @@ public class JInternalFrameDongTien extends javax.swing.JInternalFrame {
                 "Số nhà", "Phí Xây dựng", "Phí Từ Thiện", "Quỹ quốc phòng", "Phí Duy Trì Phường", "Quỹ Khuyến Học", "Quỹ Người cao tuổi"
             }
         ));
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable1.setSelectionBackground(new java.awt.Color(102, 204, 255));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -181,12 +185,15 @@ public class JInternalFrameDongTien extends javax.swing.JInternalFrame {
         int check = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn là muốn cập nhật không ? ", "Thông báo cập nhật", JOptionPane.YES_NO_OPTION);
         if(check == JOptionPane.YES_OPTION ){
             Phi p = dao.search(jTextField1.getText());
+            if(p==null) p = new Phi();
+            p.setHouseId(jTextField1.getText());
             p.setPhiDuyTriPhuong(jRadioButtonPhiDT.isSelected());
             p.setPhiTuThien(jRadioButtonPhiTT.isSelected());
             p.setPhiXdCsht(jRadioButtonPhiXD.isSelected());
             p.setQuyCsNgCaoTuoi(jRadioButtonQuyNCT.isSelected());
             p.setQuyKhuyenHoc(jRadioButtonQuyKH.isSelected());
             p.setQuyQuocPhong(jRadioButtonQuyQP.isSelected());
+            p.setHouse(new House(p.getHouseId()));
             if(dao.edit(p) || dao.save(p)){
                 JOptionPane.showMessageDialog(null, "Cập nhật thành công");
                 LoadData();

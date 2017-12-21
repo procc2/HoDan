@@ -67,6 +67,8 @@ public class JInternalFrameThemHoDan extends javax.swing.JInternalFrame {
                 "Số nhà", "Số thành viên", "Khu"
             }
         ));
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable1.setSelectionBackground(new java.awt.Color(102, 204, 255));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);

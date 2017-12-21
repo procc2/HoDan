@@ -131,7 +131,7 @@ public class Design extends javax.swing.JFrame {
 
         jLabelQua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelQua.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelQua.setText("Danh sách quà");
+        jLabelQua.setText("Danh sách tặng quà");
         jPanelQua.add(jLabelQua);
         jLabelQua.setBounds(71, 11, 190, 20);
 
@@ -192,7 +192,7 @@ public class Design extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Hộ dân");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 64, 191, -1));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 64, 230, -1));
 
         jPanelSo3.setBackground(new java.awt.Color(153, 153, 255));
         jPanelSo3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -351,6 +351,7 @@ public class Design extends javax.swing.JFrame {
         jPanelSo2.show();
         jPanelSo4.show();
         jPanelSo5.show();
+        jPanelSo6.show();
         resetColorPanel(jPanelSo1);
         resetColorPanel(jPanelSo2);
         resetColorPanel(jPanelSo3);
@@ -365,7 +366,7 @@ public class Design extends javax.swing.JFrame {
         jLabelSo3.setText("Học sinh giỏi");
         jLabelSo4.setText("Thương bệnh binh");
         jLabelSo5.setText("Người khuyết tật");
-        
+        jLabelSo6.setText("Thông tin về quà");
         
     }//GEN-LAST:event_jPanelQuaMousePressed
 
@@ -383,6 +384,7 @@ public class Design extends javax.swing.JFrame {
         resetColorPanel(jPanelSo3);
         resetColorPanel(jPanelSo4);
         resetColorPanel(jPanelSo5);
+        resetColorPanel(jPanelSo6);
         jPanelSo3.show();
         jPanelSo2.show();
         jLabel12.setText(jLabelDs.getText());
@@ -401,6 +403,9 @@ public class Design extends javax.swing.JFrame {
         setColor(jPanelSo3);
         resetColorPanel(jPanelSo2);
         resetColorPanel(jPanelSo1);
+        resetColorPanel(jPanelSo4);
+        resetColorPanel(jPanelSo5);
+        resetColorPanel(jPanelSo6);
         if(jLabel11.getText().equals(jLabelHoDan.getText())){
             if(form != null) form.dispose();
         form = new JInternalFrameThemDanhSach();
@@ -415,6 +420,7 @@ public class Design extends javax.swing.JFrame {
             });
         }
         else if(jLabel11.getText().equals(jLabelDs.getText())){
+           
             if(form != null) form.dispose();
         form = new JInternalFrameTreEm();
         ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
@@ -428,6 +434,7 @@ public class Design extends javax.swing.JFrame {
             });
         }
         else{
+             
             if(form != null) form.dispose();
             form = new JInternalFrameHsg();
             ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
@@ -446,6 +453,9 @@ public class Design extends javax.swing.JFrame {
         setColor(jPanelSo1);
         resetColorPanel(jPanelSo2);
         resetColorPanel(jPanelSo3);
+        resetColorPanel(jPanelSo4);
+        resetColorPanel(jPanelSo5);
+        resetColorPanel(jPanelSo6);
         
         if(jLabel11.getText().equals(jLabelHoDan.getText())){
         if(form != null) form.dispose();
@@ -505,6 +515,9 @@ public class Design extends javax.swing.JFrame {
         setColor(jPanelSo2);
         resetColorPanel(jPanelSo1);
         resetColorPanel(jPanelSo3);
+        resetColorPanel(jPanelSo4);
+        resetColorPanel(jPanelSo5);
+        resetColorPanel(jPanelSo6);
         if(jLabel11.getText().equals(jLabelHoDan.getText())){
         if(form != null) form.dispose();
         form = new JInternalFrameList();
@@ -547,17 +560,34 @@ public class Design extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelSo2MousePressed
 
     private void jPanelSo6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelSo6MousePressed
-        // TODO add your handling code here:
+        setColor(jPanelSo6);
+        resetColorPanel(jPanelSo1);
+        resetColorPanel(jPanelSo2);
+        resetColorPanel(jPanelSo3);
+        resetColorPanel(jPanelSo5);
+        resetColorPanel(jPanelSo4);
+            if(form != null) form.dispose();
+            form = new JInternalFrameQua();
+            ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
+            form.setVisible(true);
+            jPanelLamViec.add(form);
+            form.addInternalFrameListener(new InternalFrameAdapter() {
+                public void internalFrameClosing(InternalFrameEvent e) {
+                  
+                }
+
+            });
     }//GEN-LAST:event_jPanelSo6MousePressed
 
     private void jPanelSo4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelSo4MousePressed
        setColor(jPanelSo4);
         resetColorPanel(jPanelSo1);
+        resetColorPanel(jPanelSo6);
         resetColorPanel(jPanelSo2);
         resetColorPanel(jPanelSo3);
         resetColorPanel(jPanelSo5);
             if(form != null) form.dispose();
-            form = new JInternalFrameQuaDien1();
+            form = new JInternalFrameQuaDien2();
             ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
             form.setVisible(true);
             jPanelLamViec.add(form);
@@ -575,8 +605,9 @@ public class Design extends javax.swing.JFrame {
         resetColorPanel(jPanelSo2);
         resetColorPanel(jPanelSo3);
         resetColorPanel(jPanelSo4);
+        resetColorPanel(jPanelSo6);
             if(form != null) form.dispose();
-            form = new JInternalFrameQuaDien2();
+            form = new JInternalFrameQuaDien1();
             ((BasicInternalFrameUI)form.getUI()).setNorthPane(null);
             form.setVisible(true);
             jPanelLamViec.add(form);
@@ -623,7 +654,7 @@ public class Design extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
