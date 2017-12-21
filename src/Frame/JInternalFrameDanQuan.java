@@ -73,6 +73,12 @@ public class JInternalFrameDanQuan extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel1MouseExited(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jPanel1MouseReleased(evt);
             }
@@ -123,6 +129,14 @@ public class JInternalFrameDanQuan extends javax.swing.JInternalFrame {
     private void jPanel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseReleased
           resetColor(jPanel1);
     }//GEN-LAST:event_jPanel1MouseReleased
+
+    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+        setColor(jPanel1);
+    }//GEN-LAST:event_jPanel1MouseEntered
+
+    private void jPanel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseExited
+        resetColor(jPanel1);
+    }//GEN-LAST:event_jPanel1MouseExited
 public void exportExcel(JTable table) {
     JFileChooser chooser = new JFileChooser();
     int i = chooser.showSaveDialog(chooser);

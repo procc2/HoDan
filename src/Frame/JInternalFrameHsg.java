@@ -72,6 +72,12 @@ public class JInternalFrameHsg extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel1MouseExited(evt);
+            }
         });
 
         jLabelHoDan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -115,6 +121,14 @@ public class JInternalFrameHsg extends javax.swing.JInternalFrame {
         exportExcel(jTable1);
         resetColor(jPanel1);
     }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+        setColor(jPanel1);
+    }//GEN-LAST:event_jPanel1MouseEntered
+
+    private void jPanel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseExited
+        resetColor(jPanel1);
+    }//GEN-LAST:event_jPanel1MouseExited
     public void exportExcel(JTable table) {
     JFileChooser chooser = new JFileChooser();
     int i = chooser.showSaveDialog(chooser);
