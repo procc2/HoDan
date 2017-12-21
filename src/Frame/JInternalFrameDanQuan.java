@@ -131,7 +131,6 @@ public void exportExcel(JTable table) {
   try {
    FileWriter out = new FileWriter(file + ".xls");
    BufferedWriter bwrite = new BufferedWriter(out);
-   table.setFont(new Font("Times New Roman", Font.ITALIC, 12));
       TableModel model = table.getModel();
    // ten Cot
    for (int j = 0; j < table.getColumnCount(); j++) {
